@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import Heading from "./Heading";
+import Neighbourhood from "./Neighbourhood";
+import WeatherImage from "./WeatherImage";
+import Description from "./Description";
 import * as Location from "expo-location";
-import { useFonts } from "expo-font";
 
 const Main = () => {
   const baseWeatherUrl = "https://api.openweathermap.org/data/2.5/weather?";
-  const API_KEY = API_KEY_HERE;
+  const API_KEY = YOUR_API_KEY;
   const [weather, setWeather] = useState(null);
-  const [loaded, error] = useFonts({
-    Noto: require("../../assets/fonts/NotoSansTC-Medium.otf"),
-    Lato: require("../../assets/fonts/Lato-Regular.ttf"),
-  });
+
   const getData = async () => {
     setWeather(null);
     try {
@@ -22,8 +22,7 @@ const Main = () => {
 
       const location = await Location.getCurrentPositionAsync();
       const { latitude, longitude } = location.coords;
-      const weatherUrl = `${baseWeatherUrl}lat=${latitude}&lon=${longitude}&appid=${API_KEY}`;
-      console.log(weatherUrl);
+      const weatherUrl = `${baseWeatherUrl}lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`;
       const response = await fetch(weatherUrl);
       const result = await response.json();
 
@@ -41,20 +40,22 @@ const Main = () => {
     getData();
   }, []);
 
-  if (!loaded) {
-    return null;
+  if (weather === null) {
+    return <Text>Getting Data</Text>;
   }
-
   return (
     <View style={styles.container}>
-      <Text style={{ fontFamily: "Noto" }}>Yeet</Text>
+      <Heading />
+      <WeatherImage description={weather.weather[0].description} />
+      <Neighbourhood area={weather.name} temperature={weather.main.temp} />
+      <Description text={weather.weather[0].description} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#303030",
+    backgroundColor: "#192033",
     flex: 1,
     padding: 8,
     paddingTop: 20,
