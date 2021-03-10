@@ -19,10 +19,7 @@ export default Heading;
 
 const styles = StyleSheet.create({
   heading: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    fontSize: 20,
+    fontSize: 35,
     fontFamily: "Lato",
     color: "white",
   },

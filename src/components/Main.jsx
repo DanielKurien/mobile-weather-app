@@ -10,7 +10,6 @@ const Main = () => {
   const baseWeatherUrl = "https://api.openweathermap.org/data/2.5/weather?";
   const API_KEY = YOUR_API_KEY;
   const [weather, setWeather] = useState(null);
-
   const getData = async () => {
     setWeather(null);
     try {
@@ -41,14 +40,17 @@ const Main = () => {
   }, []);
 
   if (weather === null) {
-    return <Text>Getting Data</Text>;
+    return null;
   }
+
   return (
     <View style={styles.container}>
       <Heading />
       <WeatherImage description={weather.weather[0].description} />
-      <Neighbourhood area={weather.name} temperature={weather.main.temp} />
-      <Description text={weather.weather[0].description} />
+      <View style={styles.textContainer}>
+        <Neighbourhood area={weather.name} temperature={weather.main.temp} />
+        <Description text={weather.weather[0].description} />
+      </View>
     </View>
   );
 };
@@ -57,8 +59,14 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#192033",
     flex: 1,
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "space-evenly",
     padding: 8,
     paddingTop: 20,
+  },
+  textContainer: {
+    alignItems: "center",
   },
 });
 export default Main;

@@ -12,28 +12,28 @@ const WeatherImage = ({ description }) => {
   return (
     <>
       {description === "clear sky" ? (
-        <Image style={{ width: 250, height: 250 }} source={clearSky} />
+        <Image style={{ width: 240, height: 240 }} source={clearSky} />
       ) : null}
       {description === "scattered clouds" ? (
-        <Image style={{ width: 250, height: 250 }} source={scatteredClouds} />
+        <Image style={{ width: 240, height: 240 }} source={scatteredClouds} />
       ) : null}
       {description === "broken clouds" ? (
-        <Image style={{ width: 250, height: 250 }} source={brokenClouds} />
+        <Image style={{ width: 240, height: 240 }} source={brokenClouds} />
       ) : null}
       {description === "few clouds" ? (
-        <Image style={{ width: 250, height: 250 }} source={fewClouds} />
+        <Image style={{ width: 240, height: 240 }} source={fewClouds} />
       ) : null}
       {description === "shower rain" || description === "rain" ? (
-        <Image style={{ width: 250, height: 250 }} source={rain} />
+        <Image style={{ width: 240, height: 240 }} source={rain} />
       ) : null}
       {description === "storm" ? (
-        <Image style={{ width: 250, height: 250 }} source={storm} />
+        <Image style={{ width: 240, height: 240 }} source={storm} />
       ) : null}
       {description === "snow" ? (
-        <Image style={{ width: 250, height: 250 }} source={snow} />
+        <Image style={{ width: 240, height: 240 }} source={snow} />
       ) : null}
       {description === "mist" ? (
-        <Image style={{ width: 250, height: 250 }} source={mist} />
+        <Image style={{ width: 240, height: 240 }} source={mist} />
       ) : null}
     </>
   );
